@@ -110,9 +110,9 @@
 			isa = PBXGroup;
 			children = (
 				1BBDB7E21FB52F48009EF576 /* VirtualTourist */,
-				1BBDB7F71FB52F48009EF576 /* VirtualTouristTests */,
 				1BBDB8021FB52F48009EF576 /* VirtualTouristUITests */,
 				1BBDB7E11FB52F48009EF576 /* Products */,
+				1BBDB7F71FB52F48009EF576 /* VirtualTouristTests */,
 			);
 			sourceTree = "<group>";
 		};

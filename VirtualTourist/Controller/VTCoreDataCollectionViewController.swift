@@ -1,15 +1,20 @@
 import UIKit
 import MapKit
 
+
 private let reuseIdentifier = "VTCollectionCell"
 private let mapHeaderIdentifier = "MapHeaderView"
 private let refreshFooterIdentifier = "VTRefreshFooterView"
 
+
 class VTCoreDataCollectionViewController: CoreDataCollectionViewController {
+    
     
     var pin: Pin!
     var mapView: MKMapView!
     weak var footerView: VTRefreshFooterView?
+    let spacing: CGFloat = 8.0
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +122,7 @@ class VTCoreDataCollectionViewController: CoreDataCollectionViewController {
                                 self.enableButtons()
                             }
                             else {
-                                print("WHY IS THIS FALSE")
+                                print("WHY WOULD THIS EVER BE FALSE?")
                             }
                         })
                     }
@@ -153,6 +158,10 @@ class VTCoreDataCollectionViewController: CoreDataCollectionViewController {
         let photo = fetchedResultsController?.object(at: indexPath) as! Photo
         
         cell.imageView.image = photo.imageData == nil ? UIImage.init(named: "placeholder") : UIImage.init(data: photo.imageData! as Data)
+        
+        cell.layer.borderColor = UIColor.white.cgColor
+        cell.layer.borderWidth = 1.0
+
     
         return cell
     }
@@ -202,8 +211,28 @@ extension VTCoreDataCollectionViewController: UICollectionViewDelegateFlowLayout
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.bounds.width / 2 - 24, height: view.bounds.width / 2)
+        let length = view.frame.size.height > view.frame.size.width ? collectionView.frame.size.width / 2 - (spacing * 1.5) : collectionView.frame.size.width / 3 - (spacing * 2)
+    
+        return CGSize(width: length, height: length)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let edgeInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing)
+
+
+        return edgeInset
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return spacing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return spacing
+    }
+    
 }
 
 
