@@ -30,6 +30,7 @@ public class Pin: NSManagedObject, MKAnnotation {
             self.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
             self.creationDate = Date()
             self.photos = NSSet()
+            self.page = 1
         }
         else {
             fatalError("Unable to find Pin in entity description")

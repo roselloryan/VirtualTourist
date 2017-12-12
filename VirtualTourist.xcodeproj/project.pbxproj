@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B0A5B891FDB4D3C00943192 /* VTMapHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0A5B881FDB4D3C00943192 /* VTMapHeaderView.swift */; };
+		1B426F0F1FDF6BFC0079D0FC /* VTRefreshFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B426F0E1FDF6BFC0079D0FC /* VTRefreshFooterView.swift */; };
 		1B5D3AF61FBB59E4002ED42D /* VTConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D3AF51FBB59E4002ED42D /* VTConstants.swift */; };
 		1B5D3AF91FBB5B79002ED42D /* VTModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B5D3AF71FBB5B79002ED42D /* VTModel.xcdatamodeld */; };
 		1B8E33C71FC6F59300B33487 /* VTCoreDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8E33C61FC6F59300B33487 /* VTCoreDataCollectionViewController.swift */; };
@@ -28,7 +30,6 @@
 		1BD1CE3C1FD1AF2000A93212 /* VTCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD1CE3B1FD1AF2000A93212 /* VTCollectionViewCell.swift */; };
 		1BE6AE921FD7426D0037F11F /* VTManagedObjectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BE6AE911FD7426D0037F11F /* VTManagedObjectManager.swift */; };
 		1BEC94A41FBD51F300EF9D15 /* CoreDataCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC94A31FBD51F300EF9D15 /* CoreDataCollectionViewController.swift */; };
-		1BEC94A61FBE49B200EF9D15 /* VTTesetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEC94A51FBE49B200EF9D15 /* VTTesetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B0A5B881FDB4D3C00943192 /* VTMapHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTMapHeaderView.swift; sourceTree = "<group>"; };
+		1B426F0E1FDF6BFC0079D0FC /* VTRefreshFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTRefreshFooterView.swift; sourceTree = "<group>"; };
 		1B5D3AF51FBB59E4002ED42D /* VTConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTConstants.swift; sourceTree = "<group>"; };
 		1B5D3AF81FBB5B79002ED42D /* VTModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VTModel.xcdatamodel; sourceTree = "<group>"; };
 		1B8E33C61FC6F59300B33487 /* VTCoreDataCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTCoreDataCollectionViewController.swift; sourceTree = "<group>"; };
@@ -76,7 +79,6 @@
 		1BD1CE3B1FD1AF2000A93212 /* VTCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTCollectionViewCell.swift; sourceTree = "<group>"; };
 		1BE6AE911FD7426D0037F11F /* VTManagedObjectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTManagedObjectManager.swift; sourceTree = "<group>"; };
 		1BEC94A31FBD51F300EF9D15 /* CoreDataCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCollectionViewController.swift; sourceTree = "<group>"; };
-		1BEC94A51FBE49B200EF9D15 /* VTTesetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VTTesetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,7 +180,6 @@
 				1BEC94A31FBD51F300EF9D15 /* CoreDataCollectionViewController.swift */,
 				1BB8EAA01FBD181500D818D5 /* UIViewControllerExtension.swift */,
 				1BBD67D11FBA737500804FFA /* VTMapViewController.swift */,
-				1BEC94A51FBE49B200EF9D15 /* VTTesetViewController.swift */,
 				1B8E33C61FC6F59300B33487 /* VTCoreDataCollectionViewController.swift */,
 			);
 			path = Controller;
@@ -206,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				1BD1CE3B1FD1AF2000A93212 /* VTCollectionViewCell.swift */,
+				1B0A5B881FDB4D3C00943192 /* VTMapHeaderView.swift */,
+				1B426F0E1FDF6BFC0079D0FC /* VTRefreshFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,7 +357,8 @@
 				1B5D3AF61FBB59E4002ED42D /* VTConstants.swift in Sources */,
 				1BE6AE921FD7426D0037F11F /* VTManagedObjectManager.swift in Sources */,
 				1BBFBF1F1FBCCD83000EBEAD /* Pin+CoreDataClass.swift in Sources */,
-				1BEC94A61FBE49B200EF9D15 /* VTTesetViewController.swift in Sources */,
+				1B0A5B891FDB4D3C00943192 /* VTMapHeaderView.swift in Sources */,
+				1B426F0F1FDF6BFC0079D0FC /* VTRefreshFooterView.swift in Sources */,
 				1BB8EAA11FBD181500D818D5 /* UIViewControllerExtension.swift in Sources */,
 				1BBFBF221FBCCD83000EBEAD /* Photo+CoreDataProperties.swift in Sources */,
 				1BBD67D01FBA0ADF00804FFA /* VTAPIClient.swift in Sources */,

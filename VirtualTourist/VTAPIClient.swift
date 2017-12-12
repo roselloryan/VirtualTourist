@@ -2,15 +2,12 @@ import UIKit
 
 class VTAPIClient: NSObject {
     
-//    Key: 8fc04c61ed5267dc795fd7387129fc20
-//    Secret: 22b3d3787f74ceed
-    
     static let shared = VTAPIClient()
     
     
     // MARK: - API Call methods
     
-    func getPhotoDictionariesForCoordinates(lat: Double, lon: Double, completionHandler: @escaping(_ results: Array<Any>?, _ errorString: String?) -> Void) {
+    func getPhotoDictionaryPageForCoordinates(lat: Double, lon: Double, page: Int, completionHandler: @escaping(_ results: Array<Any>?, _ errorString: String?) -> Void) {
     
         var methodParameters: [String: AnyObject] = [:]
         methodParameters[Constants.FlickrParameterKeys.APIKey] = Constants.FlickrParameterValues.APIKey as AnyObject
@@ -21,6 +18,8 @@ class VTAPIClient: NSObject {
         methodParameters[Constants.FlickrParameterKeys.Extras] = Constants.FlickrParameterValues.MediumURL as AnyObject
         methodParameters[Constants.FlickrParameterKeys.PerPage] = Constants.FlickrParameterValues.PerPage20 as AnyObject
         methodParameters[Constants.FlickrParameterKeys.BoundingBox] = bboxString(lat: lat, lon: lon) as AnyObject
+        methodParameters[Constants.FlickrParameterKeys.Page] = page as AnyObject
+    
         
         let url = flickrURLFromParameters(methodParameters)
         let request = URLRequest(url: url)
@@ -60,7 +59,7 @@ class VTAPIClient: NSObject {
             
 //            print(parsedData)
             
-            // Get response
+            // Extract array as Swift array
             guard let responseDict = (parsedData as! NSDictionary)[Constants.FlickrResponseKeys.Photos] as? NSDictionary else {
                 completionHandler(nil, "No dictionary in response in getPhotosForCoordinatea")
                 return
@@ -82,7 +81,7 @@ class VTAPIClient: NSObject {
     }
     
     
-    func getImageWithIdForUrl(url: URL, id: String, completionHandler: @escaping(_: UIImage?, _: String) -> Void) {
+    func getImageWithIdForUrl(url: URL, completionHandler: @escaping(_: UIImage?, _: String) -> Void) {
         
         let session = URLSession.shared
         
@@ -110,13 +109,13 @@ class VTAPIClient: NSObject {
             }
             
             // Success
-            // create image from data?
             // return image or nil if failed to initialize UIImage
             if let realImage = UIImage(data: data) {
-                completionHandler(realImage, id)
+                
+                completionHandler(realImage, url.absoluteString)
             }
             else {
-                completionHandler(nil, id)
+                completionHandler(nil, url.absoluteString)
             }
         }
         

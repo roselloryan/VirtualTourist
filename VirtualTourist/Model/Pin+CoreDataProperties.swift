@@ -2,7 +2,7 @@
 //  Pin+CoreDataProperties.swift
 //  VirtualTourist
 //
-//  Created by RYAN ROSELLO on 11/15/17.
+//  Created by RYAN ROSELLO on 12/7/17.
 //  Copyright © 2017 RYAN ROSELLO. All rights reserved.
 //
 //
@@ -20,6 +20,7 @@ extension Pin {
     @NSManaged public var creationDate: Date?
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
+    @NSManaged public var page: Int
     @NSManaged public var photos: NSSet?
 
 }

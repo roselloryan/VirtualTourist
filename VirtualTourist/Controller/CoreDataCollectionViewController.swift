@@ -81,7 +81,7 @@ extension CoreDataCollectionViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // Important:
-        // A delegate must implement at least one of the change tracking delegate methods in order for change           tracking to be enabled. Providing an empty implementation of controllerDidChangeContent(_:) is sufficient.
+        // A delegate must implement at least one of the change tracking delegate methods in order for change tracking to be enabled. Providing an empty implementation of controllerDidChangeContent(_:) is sufficient.
         
         insertedIndexPaths = [IndexPath]()
         deletedIndexPaths = [IndexPath]()
@@ -106,8 +106,6 @@ extension CoreDataCollectionViewController: NSFetchedResultsControllerDelegate {
             }, completion: { (success) in
                 
                 print("The completion handler for controllerDidChangeContent was called")
-                print("Here is 'success':  ")
-                print(success)
         }
         )
     }

@@ -18,26 +18,6 @@ class VTMapViewController: UIViewController {
         // Set delegates
         mapView.delegate = self
         panGestureRecognizer.delegate = self
-    
-
-        // Fetched Pins
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            let context = appDelegate.stack.context
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.Indentifier.Pin)
-            
-            do {
-                let fetchedPins = try context.fetch(fetchRequest) as! [Pin]
-                print("Fetch pins count: \(fetchedPins.count)")
-                mapView.addAnnotations(fetchedPins)
-                
-            }
-            catch {
-                print("Failed to fetch pins in map controller")
-                presentAlertWith(title: "Failed to fetch pins in map controller", message: "")
-            }
-        }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -48,8 +28,35 @@ class VTMapViewController: UIViewController {
         navigationController?.navigationItem.rightBarButtonItem = nil
         
         mapView.deselectAnnotation(mapView.selectedAnnotations.first, animated: false)
+        
+        fetchPins()
+    }
+    
+    func fetchPins() {
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.stack.context
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.Indentifier.Pin)
+            
+            do {
+                let fetchedPins = try context.fetch(fetchRequest) as! [Pin]
+                
+                if mapView.annotations.count != fetchedPins.count {
+                    
+                    mapView.removeAnnotations(mapView.annotations)
+                    
+                    mapView.addAnnotations(fetchedPins)
+                }
+            }
+            catch {
+                print("Failed to fetch pins in map controller")
+                presentAlertWith(title: "Failed to fetch pins in map controller", message: "")
+            }
+        }
     }
 
+    // MARK: - Actions
     @IBAction func longPressGestureRecognized(_ sender: UILongPressGestureRecognizer) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -101,7 +108,7 @@ class VTMapViewController: UIViewController {
         if let photosVC = segue.destination as? VTCoreDataCollectionViewController {
             
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
-            fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "id", ascending: false)]
+            fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "urlString", ascending: false)]
             
             print("mapView.selectedAnnotations.count = \(mapView.selectedAnnotations)")
             
@@ -113,9 +120,6 @@ class VTMapViewController: UIViewController {
             let stack = (UIApplication.shared.delegate as! AppDelegate).stack
             
             let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
-
-            // Really?
-            fetchedResultsController.managedObjectContext.stalenessInterval = 0
             
             photosVC.pin = pin
             photosVC.fetchedResultsController = fetchedResultsController
@@ -129,9 +133,7 @@ extension VTMapViewController: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // Segue to collection view for specific pin
-        let pin = view.annotation as! Pin
-        print("\npin.latitude: \(pin.latitude), pin.longitude: \(pin.longitude)")
+        
         performSegue(withIdentifier: Constants.Indentifier.CollectionViewSegue, sender: nil)
     }
     
@@ -150,9 +152,9 @@ extension VTMapViewController: MKMapViewDelegate {
         }
         else {
             view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.Indentifier.PinReuseId)
+            
             view.animatesDrop = true
             
-            //TODO: Do we want calloutView? "must implement title, or view (null) must have a non-nil detailCalloutAccessoryView when canShowCallout is YES on corresponding view"
             view.canShowCallout = false
         }
         

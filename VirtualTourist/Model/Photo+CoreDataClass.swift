@@ -14,13 +14,13 @@ import CoreData
 public class Photo: NSManagedObject {
     
     
-    convenience init(id: String, context: NSManagedObjectContext) {
+    convenience init(urlString: String, context: NSManagedObjectContext) {
         
         if let description = NSEntityDescription.entity(forEntityName: "Photo", in: context) {
             
             self.init(entity: description, insertInto: context)
 
-            self.id = id
+            self.urlString = urlString
             self.imageData = nil
         }
         else {
